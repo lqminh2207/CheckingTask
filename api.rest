@@ -1,0 +1,139 @@
+GET http://localhost:3000/
+
+### MEMBER - Register 
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "xkrystall",
+    "password": "123456",
+    "dob": "2001-07-22",
+    "email": "xkrystall@gmail.com"
+}
+
+### MEMBER - Login
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "ahihii",
+    "password": "123456"
+}
+
+
+### fake data
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "userr16",
+    "password": "123456",
+    "dob": "2001-07-22",
+    "email": "user16@gmail.com"
+}
+
+### ADMIN - Get all user 
+GET http://localhost:3000/admin/listAll
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+
+### ADMIN - Update user
+PATCH http://localhost:3000/admin/listAll/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "username": "ahihii",
+    "dob": "2001-07-23",
+    "email": "ahihihi@gmail.com",
+    "status": "ACTIVE"
+}
+
+### ADMIN - Delete user 
+DELETE http://localhost:3000/admin/listAll/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+
+### ADMIN - Get user details
+POST http://localhost:3000/admin/getInfoUser/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+### ADMIN - Create project 
+POST http://localhost:3000/project
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "name": "Dự án 3",
+    "startDate": "2022-12-17 16:00:00",
+    "endDate": "2022-12-18 00:00:00"
+}
+
+### ADMIN - Update project 
+PATCH http://localhost:3000/project/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "name": "Dự án 6",
+    "startDate": "2022-12-15 17:00:00",
+    "endDate": "2022-12-18 00:00:00"
+}
+
+### ADMIN - Delete project 
+DELETE http://localhost:3000/project/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+
+### ADMIN - Create type 
+POST http://localhost:3000/type
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "name": "Default",
+    "color": "Blue",
+    "status": "ACTIVE"
+}
+
+### ADMIN - Update type 
+PATCH http://localhost:3000/type/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "name": "hahaha",
+    "color": "Red",
+    "status": "ACTIVE"
+}
+
+### ADMIN - Delete type 
+DELETE http://localhost:3000/type/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+
+### ADMIN - Create task status
+POST http://localhost:3000/taskStatus
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "statusName": "Default",
+    "order": 1,
+    "status": "ACTIVE"
+}
+
+### ADMIN - Update task status
+PATCH http://localhost:3000/taskStatus/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "statusName": "hahaha",
+    "order": 2,
+    "status": "ACTIVE"
+}
+
+### ADMIN - Delete task status
+DELETE http://localhost:3000/taskStatus/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
