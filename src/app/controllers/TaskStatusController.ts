@@ -1,4 +1,3 @@
-import { changeStatus } from './../commons/changeStatus';
 import { validate } from 'class-validator';
 import { TaskStatus } from './../models/TaskStatus';
 import { AppDataSource } from '../../data-source';

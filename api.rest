@@ -62,6 +62,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
 
 ######################### Project ##############################
 
+### ADMIN - List all project
+
+GET http://localhost:3000/project
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+
 ### ADMIN - Create project 
 POST http://localhost:3000/project
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY

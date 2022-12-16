@@ -2,7 +2,6 @@ import { validate } from 'class-validator';
 import { AppDataSource } from '../../data-source';
 import { Request, Response } from "express";
 import { Member } from './../models/Member';
-import * as jwt  from "jsonwebtoken" 
 import * as dotenv from 'dotenv'
 dotenv.config()
 

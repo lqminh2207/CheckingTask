@@ -6,8 +6,6 @@ import taskRouter from "./task"
 import taskStatusRouter from "./taskStatus"
 import taskPriorityRouter from "./taskPriority"
 import MemberController from "../app/controllers/MemberController"
-// import { AppDataSource } from './../data-source';
-// import { Member } from '../app/models/Member';
 
 function route(app) {
     app.use('/type', typeRouter)

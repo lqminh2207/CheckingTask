@@ -1,5 +1,4 @@
 import { Member } from './../models/Member';
-import { MinDate } from 'class-validator';
 import { validate } from 'class-validator';
 import { AppDataSource } from '../../data-source';
 import { Request, Response } from "express";
@@ -7,6 +6,17 @@ import { Project } from '../models/Project';
 import { compareDateNow, compareTwoDate } from '../commons/compareDate';
 
 class ProjectController {
+    // [GET] /project
+    async getAllProject(req: Request, res: Response) {
+        let projectRepo = AppDataSource.getRepository(Project)
+        try {
+            const projects = await projectRepo.createQueryBuilder().getMany()
+        } catch (error) {
+            res.status(404).send('Something went wrong')
+            return 
+        }
+    }
+
     // [POST] /project
     async create(req: Request, res: Response) {
         let { name, startDate, endDate } = req.body;
@@ -157,45 +167,6 @@ class ProjectController {
         } catch (error) {
             res.status(404).send("Something went wrong");
             return
-        }
-    }
-
-    // TEST
-    async getMem (req: Request, res: Response) {
-        // const questionRepository = AppDataSource.getRepository(Project)
-        // try {
-        //     const questions = await questionRepository.find({
-        //         select: ["id"],
-        //         where: {
-        //             id: 1
-        //         },
-        //         relations: {
-        //             members: true,
-        //         },
-        //     })
-        //     let a = questions[0].members
-        //     console.log(a)
-        //     res.send("suc")
-        // } catch (error) {
-        //     console.log(error)
-        // }
-
-        // try {
-        //     const query = await AppDataSource.createQueryBuilder()
-        //     .select("member.id").from(Member, "member").getMany()
-        //     res.send(query)
-        // } catch (error) {
-        //     console.log(error)
-        //     res.status(404).send('wrong')
-        // }
-        
-        try {
-            const query = await AppDataSource.createQueryBuilder()
-            .select("member.id").from(Member, "member").getMany()
-            res.send(query)
-        } catch (error) {
-            console.log(error)
-            res.status(404).send('wrong')
         }
     }
 }
