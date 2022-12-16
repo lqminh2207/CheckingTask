@@ -68,7 +68,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
 Content-Type: application/json
 
 {
-    "name": "Dự án 3",
+    "name": "Dự án 7",
     "startDate": "2022-12-17 16:00:00",
     "endDate": "2022-12-18 00:00:00"
 }
@@ -85,10 +85,24 @@ Content-Type: application/json
 }
 
 ### ADMIN - Delete project 
-DELETE http://localhost:3000/project/3
+DELETE http://localhost:3000/project/6
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
 
-### ADMIN - Add member
+### ADMIN - Add member to project
+
+POST http://localhost:3000/project/1/addMember/20000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+### ADMIN - Delete member to project
+
+DELETE http://localhost:3000/project/1/addMember/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+
+### TEST GET MEMBER OF PROJECT
+POST http://localhost:3000/project/getMem
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
 
 ######################### Type ##############################
 
