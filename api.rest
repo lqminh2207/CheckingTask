@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 
-### fake data
+### seed data
 POST http://localhost:3000/register
 Content-Type: application/json
 
@@ -31,6 +31,8 @@ Content-Type: application/json
     "dob": "2001-07-22",
     "email": "user16@gmail.com"
 }
+
+######################### Admin ##############################
 
 ### ADMIN - Get all user 
 GET http://localhost:3000/admin/listAll
@@ -58,6 +60,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
 POST http://localhost:3000/admin/getInfoUser/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
 
+######################### Project ##############################
+
 ### ADMIN - Create project 
 POST http://localhost:3000/project
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
@@ -76,7 +80,7 @@ Content-Type: application/json
 
 {
     "name": "Dự án 6",
-    "startDate": "2022-12-15 17:00:00",
+    "startDate": "2022-12-16 17:00:00",
     "endDate": "2022-12-18 00:00:00"
 }
 
@@ -84,6 +88,9 @@ Content-Type: application/json
 DELETE http://localhost:3000/project/3
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
 
+### ADMIN - Add member
+
+######################### Type ##############################
 
 ### ADMIN - Create type 
 POST http://localhost:3000/type
@@ -111,6 +118,11 @@ Content-Type: application/json
 DELETE http://localhost:3000/type/5
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
 
+### ADMIN - Change status task type
+PATCH http://localhost:3000/type/8/changeStatus
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+######################### Task status ##############################
 
 ### ADMIN - Create task status
 POST http://localhost:3000/taskStatus
@@ -118,9 +130,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
 Content-Type: application/json
 
 {
-    "statusName": "Default",
-    "order": 1,
-    "status": "ACTIVE"
+    "statusName": "Ah",
+    "order": 5,
+    "status": "INACTIVE"
 }
 
 ### ADMIN - Update task status
@@ -129,11 +141,39 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
 Content-Type: application/json
 
 {
-    "statusName": "hahaha",
-    "order": 2,
+    "statusName": "Ah",
+    "order": 5,
     "status": "ACTIVE"
 }
 
-### ADMIN - Delete task status
-DELETE http://localhost:3000/taskStatus/5
+### ADMIN - Change status taskStatus
+PATCH http://localhost:3000/taskStatus/6/changeStatus
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+######################### Task priority ##############################
+
+### ADMIN - Create task priority
+POST http://localhost:3000/taskPriority
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "name": "Ah",
+    "order": 5,
+    "status": "ACTIVE"
+}
+
+### ADMIN - Update task priority
+PATCH http://localhost:3000/taskPriority/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Content-Type: application/json
+
+{
+    "name": "Ah",
+    "order": 5,
+    "status": "ACTIVE"
+}
+
+### ADMIN - Change status task priority
+PATCH http://localhost:3000/taskPriority/4/changeStatus
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY

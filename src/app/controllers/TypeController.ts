@@ -77,6 +77,39 @@ class TypeController {
         typeRepo.delete(id)
         res.status(204).send('Delete successfully!');
     }
+
+     // [PATCH] /type/:typeId/changeStatus
+     async changeStatus(req: Request, res: Response) {
+        const ACTIVE = 'ACTIVE'
+        const INACTIVE = 'INACTIVE'
+
+        const id: number = parseInt(req.params.typeId)
+        let { status } = req.body;
+        const typeRepo = AppDataSource.getRepository(Type)
+        let type: Type
+
+        try {
+            type = await typeRepo.findOneByOrFail({ id: id })    
+        } catch (error) {
+            res.status(404).send("Type not found");
+            return; 
+        }
+
+        if (type.status === ACTIVE) {
+            type.status = INACTIVE
+        } else {
+            type.status = ACTIVE
+        }
+
+        try {
+            await typeRepo.save(type);
+        } catch (e) {
+            res.status(409).send("Something went wrong");
+            return;
+        }
+
+        res.status(204).send('Updated successfully!');
+    }
 }
 
 export default new TypeController();
