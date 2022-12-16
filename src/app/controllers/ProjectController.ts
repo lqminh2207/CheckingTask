@@ -1,3 +1,4 @@
+import { Member } from './../models/Member';
 import { MinDate } from 'class-validator';
 import { validate } from 'class-validator';
 import { AppDataSource } from '../../data-source';
@@ -109,6 +110,93 @@ class ProjectController {
         
         projectRepo.delete(id)
         res.status(204).send('Delete successfully!');
+    }
+
+    // [POST] /project/:projectId/addMember/:memberId
+    async addMember(req: Request, res: Response) {
+        let member: Member
+        const memberId = parseInt(req.params.memberId)
+
+        try {
+            member = await AppDataSource.getRepository(Member).findOneByOrFail({ id : memberId })
+        } catch (error) {
+            res.status(404).send("Member not found");
+            return
+        }
+
+        const projectId = parseInt(req.params.projectId)
+        try {
+            await AppDataSource.createQueryBuilder().relation(Project, "members").of(projectId).add(member)
+            res.status(201).send("Successfully");
+        } catch (error) {
+            res.status(404).send("Something went wrong");
+            return
+        }
+    }
+
+    // [DELETE] /project/:projectId/addMember/:memberId
+    async deleteMember(req: Request, res: Response) {
+        let member: Member
+
+        try {
+            member = await AppDataSource.getRepository(Member).findOneByOrFail({ id : parseInt(req.params.memberId)})
+        } catch (error) {
+            res.status(404).send("Member not found");
+            return
+        }
+
+        const projectId = parseInt(req.params.projectId)
+        if (!await AppDataSource.getRepository(Project).findOneBy({ id: projectId })) {
+            res.status(404).send("Project not found");
+            return
+        }
+        
+        try {
+            await AppDataSource.createQueryBuilder().relation(Project, "members").of(projectId).remove(member)
+            res.status(201).send("Successfully");
+        } catch (error) {
+            res.status(404).send("Something went wrong");
+            return
+        }
+    }
+
+    // TEST
+    async getMem (req: Request, res: Response) {
+        // const questionRepository = AppDataSource.getRepository(Project)
+        // try {
+        //     const questions = await questionRepository.find({
+        //         select: ["id"],
+        //         where: {
+        //             id: 1
+        //         },
+        //         relations: {
+        //             members: true,
+        //         },
+        //     })
+        //     let a = questions[0].members
+        //     console.log(a)
+        //     res.send("suc")
+        // } catch (error) {
+        //     console.log(error)
+        // }
+
+        // try {
+        //     const query = await AppDataSource.createQueryBuilder()
+        //     .select("member.id").from(Member, "member").getMany()
+        //     res.send(query)
+        // } catch (error) {
+        //     console.log(error)
+        //     res.status(404).send('wrong')
+        // }
+        
+        try {
+            const query = await AppDataSource.createQueryBuilder()
+            .select("member.id").from(Member, "member").getMany()
+            res.send(query)
+        } catch (error) {
+            console.log(error)
+            res.status(404).send('wrong')
+        }
     }
 }
 
