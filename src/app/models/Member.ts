@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { Task } from './Task';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm"
 import { IsEmail, Length } from "class-validator";
 import * as bcrypt from 'bcrypt'
 
@@ -43,6 +44,9 @@ export class Member {
 
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
     updatedAt: Date;
+
+    @OneToMany(() => Task, task => task.member)
+    tasks: Task[]
 
     hashPassword() {
         this.password = bcrypt.hashSync(this.password, 10);

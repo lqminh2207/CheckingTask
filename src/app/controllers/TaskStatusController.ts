@@ -1,3 +1,4 @@
+import { changeStatus } from './../commons/changeStatus';
 import { validate } from 'class-validator';
 import { TaskStatus } from './../models/TaskStatus';
 import { AppDataSource } from '../../data-source';
@@ -62,20 +63,53 @@ class TaskStatusController {
         }
     
         // [DELETE] /taskStatus/:taskStatusId
-        async delete(req: Request, res: Response) {
-            const id: number = parseInt(req.params.taskStatusId);
+        // async delete(req: Request, res: Response) {
+        //     const id: number = parseInt(req.params.taskStatusId);
+        //     const taskStatusRepo = AppDataSource.getRepository(TaskStatus)
+        //     let taskStatus: TaskStatus
+            
+        //     try {
+        //         taskStatus = await taskStatusRepo.findOneByOrFail({ id: id });
+        //     } catch (error) {
+        //         res.status(404).send("TaskStatus not found");
+        //         return; 
+        //     }
+            
+        //     taskStatusRepo.delete(id)
+        //     res.status(204).send('Delete successfully!');
+        // }
+
+        // [PATCH] /taskStatus/:taskStatusId/changeStatus
+        async changeStatus(req: Request, res: Response) {
+            const ACTIVE = 'ACTIVE'
+            const INACTIVE = 'INACTIVE'
+
+            const id: number = parseInt(req.params.taskStatusId)
+            let { status } = req.body;
             const taskStatusRepo = AppDataSource.getRepository(TaskStatus)
             let taskStatus: TaskStatus
-            
+
             try {
-                taskStatus = await taskStatusRepo.findOneByOrFail({ id: id });
+                taskStatus = await taskStatusRepo.findOneByOrFail({ id: id })    
             } catch (error) {
-                res.status(404).send("TaskStatus not found");
+                res.status(404).send("Status not found");
                 return; 
             }
-            
-            taskStatusRepo.delete(id)
-            res.status(204).send('Delete successfully!');
+
+            if (taskStatus.status === ACTIVE) {
+                taskStatus.status = INACTIVE
+            } else {
+                taskStatus.status = ACTIVE
+            }
+
+            try {
+                await taskStatusRepo.save(taskStatus);
+            } catch (e) {
+                res.status(409).send("Something went wrong");
+                return;
+            }
+
+            res.status(204).send('Updated successfully!');
         }
 }
 

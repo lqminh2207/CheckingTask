@@ -1,3 +1,4 @@
+import { Member } from './Member';
 import { Type } from './Type';
 import { TaskPriority } from './TaskPriority';
 import { TaskStatus } from './TaskStatus';
@@ -27,6 +28,9 @@ export class Task {
 
     @ManyToOne(() => Project, project => project.tasks)
     project: Project
+
+    @ManyToOne(() => Member, member => member.tasks)
+    member: Member
 
     @ManyToOne(() => TaskPriority, taskPriority => taskPriority.tasks)
     taskPriority: TaskPriority
