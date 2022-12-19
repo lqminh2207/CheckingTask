@@ -1,3 +1,5 @@
+import { checkRole } from './../app/middlewares/checkRole';
+import { checkJwt } from './../app/middlewares/checkJwt';
 import adminRouter from "./admin"
 import memberRouter from "./member"
 import projectRouter from "./project"
@@ -13,12 +15,8 @@ function route(app) {
     app.use('/task', taskRouter)
     app.use('/taskStatus', taskStatusRouter)
     app.use('/taskPriority', taskPriorityRouter)
-    
-    app.use('/member', memberRouter)
-    app.use('/admin', adminRouter)
-
-    app.post('/login', MemberController.login)
-    app.post('/register', MemberController.register)
+    app.use('/', memberRouter)
+    app.use('/', adminRouter)
     
     app.get('/', (req, res) => {
         res.send('Dashboard')

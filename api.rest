@@ -1,6 +1,6 @@
 GET http://localhost:3000/
 
-### MEMBER - Register 
+### Register 
 POST http://localhost:3000/register
 Content-Type: application/json
 
@@ -11,37 +11,35 @@ Content-Type: application/json
     "email": "xkrystall@gmail.com"
 }
 
-### MEMBER - Login
+### Login
 POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "username": "ahihii",
+    "username": "user18",
     "password": "123456"
 }
 
+######################### Member ##############################
+### Member - Get project
+GET http://localhost:3000/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrYWtha2FhIiwicm9sZSI6Ik1FTUJFUiIsImlhdCI6MTY3MTQxNDE2MSwiZXhwIjoxNjcyMDE4OTYxfQ.4Mip4O6CEbzhhid0IVPWPz1HZaMn0sFrDC7fzkE878w
 
-### seed data
-POST http://localhost:3000/register
-Content-Type: application/json
+### Member - Get task
+GET http://localhost:3000/1/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrYWtha2FhIiwicm9sZSI6Ik1FTUJFUiIsImlhdCI6MTY3MTQxNDE2MSwiZXhwIjoxNjcyMDE4OTYxfQ.4Mip4O6CEbzhhid0IVPWPz1HZaMn0sFrDC7fzkE878w
 
-{
-    "username": "userr16",
-    "password": "123456",
-    "dob": "2001-07-22",
-    "email": "user16@gmail.com"
-}
 
 ######################### Admin ##############################
 
-### ADMIN - Get all user 
-GET http://localhost:3000/admin/listAll
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+### ADMIN - Get all user
+GET http://localhost:3000/listAll
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 
 
 ### ADMIN - Update user
-PATCH http://localhost:3000/admin/listAll/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+PATCH http://localhost:3000/listAll/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
@@ -51,37 +49,44 @@ Content-Type: application/json
     "status": "ACTIVE"
 }
 
-### ADMIN - Delete user 
-DELETE http://localhost:3000/admin/listAll/13
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+### ADMIN - Delete user
+DELETE http://localhost:3000/listAll/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 
 
-### ADMIN - Get user details
-POST http://localhost:3000/admin/getInfoUser/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+
+### ADMIN - Get user project
+GET http://localhost:3000/listAll/2/projects
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
+
+
+### ADMIN - Get user task filter by project
+GET http://localhost:3000/listAll/3/projects/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
+
 
 ######################### Project ##############################
 
-### ADMIN - List all project
+### ADMIN/MEMBER - List all project
 
 GET http://localhost:3000/project
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrYWtha2FhIiwicm9sZSI6Ik1FTUJFUiIsImlhdCI6MTY3MTQxNDE2MSwiZXhwIjoxNjcyMDE4OTYxfQ.4Mip4O6CEbzhhid0IVPWPz1HZaMn0sFrDC7fzkE878w
 
 
 ### ADMIN - Create project 
 POST http://localhost:3000/project
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
-    "name": "Dự án 7",
-    "startDate": "2022-12-17 16:00:00",
-    "endDate": "2022-12-18 00:00:00"
+    "name": "Dự án 10",
+    "startDate": "2022-12-19 16:00:00",
+    "endDate": "2022-12-22 00:00:00"
 }
 
 ### ADMIN - Update project 
-PATCH http://localhost:3000/project/6
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+PATCH http://localhost:3000/project/9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
@@ -92,29 +97,28 @@ Content-Type: application/json
 
 ### ADMIN - Delete project 
 DELETE http://localhost:3000/project/6
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
+
 
 ### ADMIN - Add member to project
 
-POST http://localhost:3000/project/1/addMember/20000
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+POST http://localhost:3000/project/8/addMember/200
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 
-### ADMIN - Delete member to project
+
+### ADMIN - Delete member out of project
 
 DELETE http://localhost:3000/project/1/addMember/6
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 
 
-### TEST GET MEMBER OF PROJECT
-POST http://localhost:3000/project/getMem
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
 
 
 ######################### Type ##############################
 
 ### ADMIN - Create type 
 POST http://localhost:3000/type
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
@@ -125,7 +129,7 @@ Content-Type: application/json
 
 ### ADMIN - Update type 
 PATCH http://localhost:3000/type/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
@@ -136,28 +140,30 @@ Content-Type: application/json
 
 ### ADMIN - Delete type 
 DELETE http://localhost:3000/type/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
+
 
 ### ADMIN - Change status task type
 PATCH http://localhost:3000/type/8/changeStatus
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
+
 
 ######################### Task status ##############################
 
 ### ADMIN - Create task status
 POST http://localhost:3000/taskStatus
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
-    "statusName": "Ah",
-    "order": 5,
+    "statusName": "aihihi",
+    "order": 6,
     "status": "INACTIVE"
 }
 
 ### ADMIN - Update task status
 PATCH http://localhost:3000/taskStatus/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
@@ -168,13 +174,14 @@ Content-Type: application/json
 
 ### ADMIN - Change status taskStatus
 PATCH http://localhost:3000/taskStatus/6/changeStatus
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
+
 
 ######################### Task priority ##############################
 
 ### ADMIN - Create task priority
 POST http://localhost:3000/taskPriority
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
@@ -185,7 +192,7 @@ Content-Type: application/json
 
 ### ADMIN - Update task priority
 PATCH http://localhost:3000/taskPriority/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 Content-Type: application/json
 
 {
@@ -196,4 +203,51 @@ Content-Type: application/json
 
 ### ADMIN - Change status task priority
 PATCH http://localhost:3000/taskPriority/4/changeStatus
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJpYXQiOjE2NzExMTIxNjEsImV4cCI6MTY3MTE5ODU2MX0.QmNFJ_gfCiLA-xqR5Z_-zuvQTX31tH0dgeDrfoUkQXY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
+
+
+######################### Task ##############################
+
+### ADMIN/MEMBER - Get all task 
+GET http://localhost:3000/task?status=Pending
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrYWtha2FhIiwicm9sZSI6Ik1FTUJFUiIsImlhdCI6MTY3MTQxNDE2MSwiZXhwIjoxNjcyMDE4OTYxfQ.4Mip4O6CEbzhhid0IVPWPz1HZaMn0sFrDC7fzkE878w
+
+
+### ADMIN - Create task 
+POST http://localhost:3000/task
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
+Content-Type: application/json
+
+{
+    "projectId": 10,
+    "memberId": 33,
+    "taskStatusId": 2,
+    "taskPriorityId": 1,
+    "typeId": 1,
+    "name": "Default",
+    "startDate": "2022-12-19 17:00:00",
+    "endDate": "2022-12-21 15:00:00"
+}
+
+### ADMIN - Update task
+PATCH http://localhost:3000/task/34
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzMsInVzZXJuYW1lIjoidXNlcjE4Iiwicm9sZSI6Ik1FTUJFUiIsImlhdCI6MTY3MTQyMTgzNywiZXhwIjoxNjcyMDI2NjM3fQ.DmeqEu5LrN6K3hlWOrRXXPFg2lKO7luibgR71FMU98Y
+Content-Type: application/json
+
+{
+    "projectId": 10,
+    "memberId": 33,
+    "taskStatusId": 2,
+    "taskPriorityId": 1,
+    "typeId": 1,
+    "name": "kaka",
+    "startDate": "2022-12-19 17:00:00",
+    "endDate": "2022-12-22 00:00:00"
+}
+
+### ADMIN - Delete type 
+DELETE http://localhost:3000/task/35
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrYWtha2FhIiwicm9sZSI6Ik1FTUJFUiIsImlhdCI6MTY3MTQxNDE2MSwiZXhwIjoxNjcyMDE4OTYxfQ.4Mip4O6CEbzhhid0IVPWPz1HZaMn0sFrDC7fzkE878w
+
+
+

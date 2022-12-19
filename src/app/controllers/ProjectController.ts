@@ -1,19 +1,71 @@
+import { TaskStatus } from './../models/TaskStatus';
+import { Task } from './../models/Task';
 import { Member } from './../models/Member';
 import { validate } from 'class-validator';
 import { AppDataSource } from '../../data-source';
 import { Request, Response } from "express";
 import { Project } from '../models/Project';
 import { compareDateNow, compareTwoDate } from '../commons/compareDate';
+import { RdbmsSchemaBuilder } from 'typeorm/schema-builder/RdbmsSchemaBuilder';
 
 class ProjectController {
     // [GET] /project
     async getAllProject(req: Request, res: Response) {
-        let projectRepo = AppDataSource.getRepository(Project)
-        try {
-            const projects = await projectRepo.createQueryBuilder().getMany()
-        } catch (error) {
-            res.status(404).send('Something went wrong')
-            return 
+        const role = res.locals.jwtPayload.role
+
+        const query1 = await AppDataSource.getRepository(Task).createQueryBuilder('t')
+        .loadAllRelationIds()
+        .select('t.projectId', 'projectId').addSelect('COUNT(t.projectId)', 'closeTask')
+        .innerJoin(TaskStatus, 'ts', 't.taskStatusId = ts.id')
+        .where('ts.statusName = \'Close\'')
+        .groupBy('t.projectId').addGroupBy('ts.statusName')
+        .getQuery()
+
+        const query2 = await AppDataSource.getRepository(Task).createQueryBuilder('t')
+        .loadAllRelationIds()
+        .select('t.projectId', 'projectId').addSelect('COUNT(t.projectId)', 'totalTask').groupBy('t.projectId')
+        .getQuery()
+
+        if (role === 'MEMBER') {
+            const id: number = res.locals.jwtPayload.id
+            const userRepo = AppDataSource.getRepository(Member)
+    
+            try {
+                const projects = await userRepo.findOneOrFail({
+                    loadRelationIds: true,
+                    where: { id: id }
+                })
+
+                let projectsId = projects.projects
+                const query = await AppDataSource.getRepository(Project).createQueryBuilder('p')
+                .addSelect('"q2"."totalTask"').addSelect('COUNT("q1"."closeTask")', 'closeTask')
+                .leftJoin('(' + query1 + ')', 'q1', '"q1"."projectId" = p.id')
+                .leftJoin('(' + query2 + ')', 'q2', '"q2"."projectId" = p.id')
+                .where(`p.id IN (${projectsId})`)
+                .groupBy('p.id').addGroupBy('p.name').addGroupBy('p.slug').addGroupBy('p.startDate').addGroupBy('p.endDate')
+                .addGroupBy('p.createdAt').addGroupBy('p.updatedAt').addGroupBy('"q2"."totalTask"').getRawMany()
+                
+                res.send(query)
+            } catch (error) {
+                console.log(error)
+                res.status(404).send("User not found");
+                return
+            }
+        } else {
+            try {
+                const query = await AppDataSource.getRepository(Project).createQueryBuilder('p')
+                .addSelect('"q2"."totalTask"').addSelect('COUNT("q1"."closeTask")', 'closeTask')
+                .leftJoin('(' + query1 + ')', 'q1', '"q1"."projectId" = p.id')
+                .leftJoin('(' + query2 + ')', 'q2', '"q2"."projectId" = p.id')
+                .groupBy('p.id').addGroupBy('p.name').addGroupBy('p.slug').addGroupBy('p.startDate').addGroupBy('p.endDate')
+                .addGroupBy('p.createdAt').addGroupBy('p.updatedAt').addGroupBy('"q2"."totalTask"')
+                .getRawMany()
+
+                res.send(query)
+            } catch (error) {
+                res.status(404).send('Something went wrong')
+                return 
+            }
         }
     }
 

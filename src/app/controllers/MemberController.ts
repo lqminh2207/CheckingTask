@@ -1,3 +1,4 @@
+import { Task } from './../models/Task';
 import { AppDataSource } from '../../data-source';
 import { Request, Response } from "express";
 import { Member } from './../models/Member';
@@ -64,28 +65,47 @@ class MemberController {
             return;
         }
         
-        const token = jwt.sign({ id: user.id, username: user.username },  process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '24h'
+        const token = jwt.sign({ id: user.id, username: user.username, role: user.role },  process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: '7d'
         })
 
         res.send(token);
     }
 
+    // [GET] /projects
     async getProject(req: Request, res: Response) {
-        const id: number = parseInt(req.params.projectId);
+        const id: number = res.locals.jwtPayload.id
         const userRepo = AppDataSource.getRepository(Member)
 
         try {
-            const query = userRepo
-                .createQueryBuilder('member')
-                .innerJoin('project_members_member', 'pm', 'pm.memberId = member.id')
-                .innerJoin('project', 'pro', 'pro.id = pm.projectId')
-                .where('member.id = :id', { id: id })
-                .getMany()
+            const projects = await userRepo.findOneOrFail({
+                select: ['id', 'projects'],
+                relations: {
+                    projects: true
+                },
+                where: { id: id }
+            })
+    
+            res.send(projects)
+        } catch (error) {
+            res.status(404).send("User not found");
+        }
+    }
+
+    // [GET] /:projectId/projects
+    async getTask(req: Request, res: Response) {    
+        const memberId: number = res.locals.jwtPayload.id
+        const projectId: number = parseInt(req.params.projectId);
+        const taskRepo = AppDataSource.getRepository(Task)
+
+        try {
+            const query = await taskRepo.createQueryBuilder()
+            .loadAllRelationIds().where({ member: memberId, project: projectId })
+            .getMany()
     
             res.send(query)
         } catch (error) {
-            res.status(404).send("User not found");
+            res.status(404).send("Something went wrong");
         }
     }
 }

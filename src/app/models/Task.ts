@@ -12,7 +12,7 @@ export class Task {
     id: number
 
     @Column()
-    assignee: string
+    name: string
 
     @Column()
     startDate: Date
