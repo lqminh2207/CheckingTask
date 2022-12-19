@@ -4,8 +4,8 @@ import { AppDataSource } from '../../data-source';
 import { Request, Response } from "express";
 
 class TaskPriorityController {
-     // [POST] /taskPriority
-     async create(req: Request, res: Response) {
+    // [POST] /taskPriority
+    async create(req: Request, res: Response) {
         let { name, order, status } = req.body;
         const taskPriority = new TaskPriority()
         taskPriority.name = name

@@ -1,7 +1,8 @@
 import { Task } from './Task';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToMany } from "typeorm"
 import { IsEmail, Length } from "class-validator";
 import * as bcrypt from 'bcrypt'
+import { Project } from './Project';
 
 @Entity()
 export class Member {
@@ -44,6 +45,9 @@ export class Member {
 
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
     updatedAt: Date;
+
+    @ManyToMany(() => Project, (project) => project.members)
+    projects: Project[]
 
     @OneToMany(() => Task, task => task.member)
     tasks: Task[]

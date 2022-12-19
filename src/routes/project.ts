@@ -9,6 +9,6 @@ router.delete('/:projectId([0-9]+)/addMember/:memberId([0-9]+)', [checkJwt, chec
 router.patch('/:projectId([0-9]+)', [checkJwt, checkRole(["ADMIN"])], ProjectController.update)
 router.delete('/:projectId([0-9]+)', [checkJwt, checkRole(["ADMIN"])], ProjectController.delete)
 router.post('/', [checkJwt, checkRole(["ADMIN"])], ProjectController.create)
-router.get('/', [checkJwt, checkRole(["ADMIN"])], ProjectController.getAllProject)
+router.get('/', [checkJwt, checkRole(["ADMIN", "MEMBER"])], ProjectController.getAllProject)
 
 export default router

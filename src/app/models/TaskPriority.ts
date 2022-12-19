@@ -10,7 +10,7 @@ export class TaskPriority {
     @Column({ unique: true })
     name: string
 
-    @Column()
+    @Column({ unique: true })
     order: number
 
     @Column({ default: "ACTIVE" })
