@@ -6,7 +6,6 @@ import { AppDataSource } from '../../data-source';
 import { Request, Response } from "express";
 import { Project } from '../models/Project';
 import { compareDateNow, compareTwoDate } from '../commons/compareDate';
-import { RdbmsSchemaBuilder } from 'typeorm/schema-builder/RdbmsSchemaBuilder';
 
 class ProjectController {
     // [GET] /project
@@ -47,7 +46,6 @@ class ProjectController {
                 
                 res.send(query)
             } catch (error) {
-                console.log(error)
                 res.status(404).send("User not found");
                 return
             }
@@ -66,6 +64,37 @@ class ProjectController {
                 res.status(404).send('Something went wrong')
                 return 
             }
+        }
+    }
+    
+    // [GET] /project/:projectId
+    async getProjectDetail(req: Request, res: Response) {
+        const projectId: number = parseInt(req.params.projectId);
+
+        let query: Project[]
+        try {
+            // query = await AppDataSource.getRepository(Project)
+            // .findOne({
+            //     where: { id: projectId },
+            //     relations: {
+            //         members: true,
+            //         tasks: true,
+            //     },
+            //     loadRelationIds: true
+            // })
+            query = await AppDataSource.createQueryBuilder(Project, 'p')
+            .select('p.name').addSelect('p.id').addSelect('t.id').addSelect('t.memberId')
+            .addSelect('t.taskStatusId').addSelect('t.taskPriorityId').addSelect('t.name')
+            .addSelect('t.startDate').addSelect('t.endDate')
+            .leftJoin(Task, 't', '"t"."projectId" = p.id')
+            .where( {id: projectId })
+            .loadAllRelationIds()
+            .getRawMany()
+
+            res.send(query)
+        } catch (error) {
+            console.log(error);
+            res.status(404).send('Something went wrong')
         }
     }
 

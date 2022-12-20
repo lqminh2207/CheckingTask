@@ -6,6 +6,7 @@ const router = Router()
 
 router.post('/login', MemberController.login)
 router.post('/register', MemberController.register)
+router.post('/changePassword', MemberController.changePassword)
 router.get('/:projectId([0-9]+)/projects', [checkJwt, checkRole(["MEMBER"])], MemberController.getTask)
 router.get('/projects', [checkJwt, checkRole(["MEMBER"])], MemberController.getProject)
 
