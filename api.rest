@@ -5,10 +5,11 @@ POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "username": "xkrystall",
+    "username": "user20",
     "password": "123456",
     "dob": "2001-07-22",
-    "email": "xkrystall@gmail.com"
+    "email": "xkrystall@gmail.com",
+    "projectId": 8
 }
 
 ### Login
@@ -16,14 +17,24 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
+    "username": "user20",
+    "password": "123456",
+    "inviteId": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0SWQiOjgsImlhdCI6MTY3MTUxODU1MywiZXhwIjoxNjcxNjA0OTUzfQ.2D7U9Fs_qf6QX59FStlPYFyOeG76YjsbRKTsUJX4xsw"
+}
+
+
+### Change Password
+POST http://localhost:3000/changePassword
+Content-Type: application/json
+
+{
     "username": "user18",
-    "password": "123456"
+    "password": "123456",
+    "newPassword": "1234567",
+    "confirmPassword": "1234567"
 }
 
 ######################### Member ##############################
-### Member - Get project
-GET http://localhost:3000/projects
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrYWtha2FhIiwicm9sZSI6Ik1FTUJFUiIsImlhdCI6MTY3MTQxNDE2MSwiZXhwIjoxNjcyMDE4OTYxfQ.4Mip4O6CEbzhhid0IVPWPz1HZaMn0sFrDC7fzkE878w
 
 ### Member - Get task
 GET http://localhost:3000/1/projects
@@ -61,7 +72,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
 
 
 ### ADMIN - Get user task filter by project
-GET http://localhost:3000/listAll/3/projects/8
+GET http://localhost:3000/listAll/1/projects/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 
 
@@ -71,6 +82,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hb
 
 GET http://localhost:3000/project
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrYWtha2FhIiwicm9sZSI6Ik1FTUJFUiIsImlhdCI6MTY3MTQxNDE2MSwiZXhwIjoxNjcyMDE4OTYxfQ.4Mip4O6CEbzhhid0IVPWPz1HZaMn0sFrDC7fzkE878w
+
+### ADMIN - Project detail
+
+GET http://localhost:3000/project/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ4a3J5c3RhbGwiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2NzEyOTA2NjcsImV4cCI6MTY3MTg5NTQ2N30.a7cuCIdY41h0OjzEaprb46CBZXDXEqrLm6rIp8EcLMQ
 
 
 ### ADMIN - Create project 
