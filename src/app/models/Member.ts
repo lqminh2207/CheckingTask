@@ -17,11 +17,11 @@ export class Member {
     @Length(6, 50)
     username: string
 
-    @Column()
+    @Column({ nullable: true})
     @Length(6, 100)
     password: string
 
-    @Column()
+    @Column({ nullable: true})
     dob: Date
 
     @Column()

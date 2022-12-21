@@ -17,10 +17,6 @@ function route(app) {
     app.use('/taskPriority', taskPriorityRouter)
     app.use('/', memberRouter)
     app.use('/', adminRouter)
-    
-    app.get('/', (req, res) => {
-        res.send('Dashboard')
-    })
 }   
 
 export default route

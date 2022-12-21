@@ -2,7 +2,6 @@ import { Task } from './Task';
 import slugify from "slugify"
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, OneToMany } from "typeorm"
 import { Member } from "./Member"
-import { IsDateString, MinDate } from 'class-validator';
 
 @Entity()
 export class Project {
@@ -41,15 +40,3 @@ export class Project {
         }
     }
 }
-
-// Project.pre('validate', function(next) { 
-//     if (this.title) {
-//         this.slug = slugify(this.title, { lower: true, strict: true })
-//     }
-
-//     if (this.markdown) {
-//         this.sanitizedHTML = dompurify.sanitize(marked(this.markdown))
-//     }
-
-//     next()
-// })
