@@ -1,5 +1,5 @@
 GET http://localhost:3000/
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDIsInVzZXJuYW1lIjoibWluaGRldjIyQGdtYWlsLmNvbSIsInJvbGUiOiJNRU1CRVIiLCJpYXQiOjE2NzE2Mjg0NTEsImV4cCI6MTY3MjIzMzI1MX0.egCoDogHfBzGyrc0WaTaUUPnpmq7SDtVSzLSHcArd8I
 ### Register 
 POST http://localhost:3000/register
 Content-Type: application/json

@@ -20,7 +20,7 @@ passport.use(new GoogleStrategy(
         scope: ['email', 'profile']
     }, 
     async (accessToken: string, refreshToken: string, profile: Profile, done: VerifyCallback) => {
-        //   check if user already exist in our db
+        // check if user already exist in our db
         const oldUser = await AppDataSource.getRepository(Member).findOneBy({ email: profile.emails[0].value })
         
         if (oldUser) {
