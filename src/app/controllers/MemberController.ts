@@ -99,6 +99,19 @@ class MemberController {
 
         res.send(token);
     }
+
+    loginWithGoogle (req: Request, res: Response) {
+        // req.user._json
+        console.log(req.user)
+        // if (req.user) {
+        //     const token = jwt.sign({ id: req.user.id, username: req.user.username, role: req.user.role }, process.env.ACCESS_TOKEN_SECRET, {
+        //         expiresIn: '7d'
+        //     })
+    
+        //     res.send(token);
+        //     res.redirect('/');
+        // }
+    }
     
     // [POST] /changePassword
     async changePassword (req: Request, res: Response) {
