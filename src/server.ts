@@ -10,9 +10,10 @@ const app = express();
 config()
 require('./app/strategies/google')
 
-app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
+// Google Oauth2
 app.use(flash())
 app.use(session({
     resave: false,
@@ -22,7 +23,9 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+// Cloudinary
 
+// Config header
 app.use(cors());
 app.use(helmet());
 
