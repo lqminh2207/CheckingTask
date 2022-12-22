@@ -4,6 +4,7 @@ import { validate } from 'class-validator';
 import { AppDataSource } from '../../data-source';
 import { Request, Response } from "express";
 import { Member } from './../models/Member';
+import { v2 as cloudinary } from 'cloudinary'
 import * as dotenv from 'dotenv'
 dotenv.config()
 
@@ -39,6 +40,23 @@ class AdminController {
             return; 
         }
 
+        // ---------------------------
+
+        if (user.image) {
+            try {
+                await cloudinary.uploader.destroy(user.image);
+                // Upload image to cloudinary
+
+                if (req.file) {
+                    user.image = req.file.filename
+                }
+            } catch (err) {
+                res.status(404).send("User not found");
+                return; 
+            }
+        }
+
+        // ---------------------------
         user.username = username
         user.dob = dob
         user.email = email

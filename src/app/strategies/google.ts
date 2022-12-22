@@ -7,12 +7,12 @@ passport.serializeUser((user: Member, done: VerifyCallback) => {
     done(null, user.id);
  });
  
- passport.deserializeUser(async (id: number, done: VerifyCallback) => {
+passport.deserializeUser(async (id: number, done: VerifyCallback) => {
    const USER = await AppDataSource.getRepository(Member).findOneByOrFail({ id: id })
    done(null, USER);
  });
 
-passport.use(new GoogleStrategy(
+passport.use(new GoogleStrategy (
     {
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,

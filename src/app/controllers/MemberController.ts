@@ -6,7 +6,8 @@ import { Member } from './../models/Member';
 import * as jwt  from "jsonwebtoken" 
 import { validate } from 'class-validator';
 import * as bcrypt from 'bcrypt'
-import * as dotenv from 'dotenv'
+import { config } from 'dotenv'
+config()
 
 class MemberController {
     // [POST] /register
@@ -28,6 +29,18 @@ class MemberController {
             res.status(400).send(errors);
             return;
         }
+
+        // ---------------------------------------
+
+        if (req.file) {
+            const fileData = {
+                path: req.file.path,
+                originalName: req.file.filename,
+            }
+            user.image = fileData.originalName
+        }
+        
+        // ---------------------------------------
         
         user.hashPassword() 
         
